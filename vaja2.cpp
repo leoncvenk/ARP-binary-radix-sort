@@ -76,6 +76,15 @@ void binarniRadixSort(unsigned char*& A, int n)
     {
         return;
     }
+
+    unsigned char* B = new unsigned char[n];
+
+    for (int k = 0; k < 8; k++)
+    {
+        countingSortPoBitu(A, B, n, k);
+    }
+
+    delete[] B;
 }
 
 int main() {
