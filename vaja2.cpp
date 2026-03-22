@@ -116,5 +116,24 @@ int main(int argc, char* argv[])
         return 1;
     }
 
+    unsigned char* A = nullptr;
+    int n = 0;
+
+    if (!preberiPodatke(argv[1], A, n))
+    {
+        cout << "Napaka pri branju vhodne datoteke." << endl;
+        return 1;
+    }
+
+    binarniRadixSort(A, n);
+
+    if (!zapisiPodatke("out.txt", A, n))
+    {
+        cout << "Napaka pri pisanju v out.txt." << endl;
+        delete[] A;
+        return 1;
+    }
+
+    delete[] A;
     return 0;
 }
