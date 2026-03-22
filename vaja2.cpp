@@ -95,6 +95,16 @@ bool zapisiPodatke(const char* imeDatoteke, unsigned char* A, int n)
         return false;
     }
 
+    for (int i = 0; i < n; i++)
+    {
+        izhod << (int)A[i];
+        if (i < n - 1)
+        {
+            izhod << " ";
+        }
+    }
+
+    izhod.close();
     return true;
 }
 
