@@ -49,6 +49,24 @@ bool preberiPodatke(const char* imeDatoteke, unsigned char*& A, int& n)
 void countingSortPoBitu(unsigned char*& A, unsigned char*& B, int n, int k) 
 {
     int C[2] = {0, 0};
+
+    for (int i = 0; i < n; i++) 
+    {
+        int bit = (A[i] >> k) & 1;
+        C[bit]++;
+    }
+
+    C[1] += C[0];
+
+    for (int i = n - 1; i >= 0; i--) 
+    {
+        int bit = (A[i] >> k) & 1;
+        B[--C[bit]] = A[i];
+    }
+
+    unsigned char* temp = A;
+    A = B;
+    B = temp;
 }
 
 
