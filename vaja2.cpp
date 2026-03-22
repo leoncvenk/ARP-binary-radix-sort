@@ -108,7 +108,32 @@ bool zapisiPodatke(const char* imeDatoteke, unsigned char* A, int n)
     return true;
 }
 
-int main() {
-    cout << "Test" << endl;
+int main(int argc, char* argv[])
+{
+    if (argc != 2)
+    {
+        cout << "Uporaba: vaja2 <vhodna_datoteka>" << endl;
+        return 1;
+    }
+
+    unsigned char* A = nullptr;
+    int n = 0;
+
+    if (!preberiPodatke(argv[1], A, n))
+    {
+        cout << "Napaka pri branju vhodne datoteke." << endl;
+        return 1;
+    }
+
+    binarniRadixSort(A, n);
+
+    if (!zapisiPodatke("out.txt", A, n))
+    {
+        cout << "Napaka pri pisanju v out.txt." << endl;
+        delete[] A;
+        return 1;
+    }
+
+    delete[] A;
     return 0;
 }
