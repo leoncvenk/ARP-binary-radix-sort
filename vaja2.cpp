@@ -46,11 +46,12 @@ bool preberiPodatke(const char* imeDatoteke, unsigned char*& A, int& n)
     return true;
 }
 
-void countingSortPoBitu(unsigned char*& A, unsigned char*& B, int n, int k) 
+
+void countingSortPoBitu(unsigned char*& A, unsigned char*& B, int n, int k)
 {
     int C[2] = {0, 0};
 
-    for (int i = 0; i < n; i++) 
+    for (int i = 0; i < n; i++)
     {
         int bit = (A[i] >> k) & 1;
         C[bit]++;
@@ -58,7 +59,7 @@ void countingSortPoBitu(unsigned char*& A, unsigned char*& B, int n, int k)
 
     C[1] += C[0];
 
-    for (int i = n - 1; i >= 0; i--) 
+    for (int i = n - 1; i >= 0; i--)
     {
         int bit = (A[i] >> k) & 1;
         B[--C[bit]] = A[i];
@@ -69,7 +70,22 @@ void countingSortPoBitu(unsigned char*& A, unsigned char*& B, int n, int k)
     B = temp;
 }
 
+void binarniRadixSort(unsigned char*& A, int n)
+{
+    if (n <= 1)
+    {
+        return;
+    }
 
+    unsigned char* B = new unsigned char[n];
+
+    for (int k = 0; k < 8; k++)
+    {
+        countingSortPoBitu(A, B, n, k);
+    }
+
+    delete[] B;
+}
 
 int main() {
     cout << "Test" << endl;
