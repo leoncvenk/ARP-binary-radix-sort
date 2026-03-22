@@ -87,6 +87,17 @@ void binarniRadixSort(unsigned char*& A, int n)
     delete[] B;
 }
 
+bool zapisiPodatke(const char* imeDatoteke, unsigned char* A, int n)
+{
+    ofstream izhod(imeDatoteke);
+    if (!izhod.is_open())
+    {
+        return false;
+    }
+
+    return true;
+}
+
 int main() {
     cout << "Test" << endl;
     return 0;
